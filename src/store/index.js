@@ -1,0 +1,22 @@
+import Vue from 'vue'
+import Vuex from 'vuex'
+import storage from '../util/storage'
+
+Vue.use(Vuex)
+const state = {
+  lists: storage.get('lists') || [],
+  searchLists: []
+}
+const mutations = {
+  filterLists (state, data) {
+    state.searchLists = state.lists.filter(list => {
+      return list.title.toLowerCase().indexOf(data) > -1 || list.des.toLowerCase().indexOf(data) > -1
+    })
+  }
+}
+const store = new Vuex.Store({
+  state,
+  mutations
+})
+
+export default store
