@@ -3,7 +3,7 @@ let minxin = {
     getImg: function (img) {
       if (!img) {
         // 缺省图
-        return require('../assets/logo/fkw-logo-nav.png')
+        return require('../assets/logo/default.png')
       } else {
         return require('../assets/logo/' + img)
       }

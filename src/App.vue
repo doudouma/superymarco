@@ -625,10 +625,10 @@ background: linear-gradient(to top,#FF416C,#FF4B2B)
     display: inline-block;
 }
 
-.header .logo strong:hover img {
-    top: auto;
-    bottom: -1px;
-}
+// .header .logo strong:hover img {
+//     top: auto;
+//     bottom: -1px;
+// }
 
 .header .logo strong a {
     display: block;

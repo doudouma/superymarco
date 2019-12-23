@@ -3,7 +3,7 @@
   <div class="header">
     <div class="container">
       <h1 class="logo">
-        <strong> <a href="./index" title="优设导航 - 学设计从这里开始"> <img :src="logo" alt="Super精英导航"> </a> </strong>
+        <strong> <a href="./" title="Super精英导航- 每天进步一点点"> <img :src="logo" alt="Super精英导航"> </a> </strong>
         <span class="arrow"><i class="icon-play-circled"></i><em></em></span>
         <ul class="subnav">
           <li> <a href="https://hao.uisdc.com/book" target="_blank">优设图书导航</a> </li><li> <a href="https://hao.uisdc.com/shop" target="_blank">优设电商导航</a> </li>      </ul>
