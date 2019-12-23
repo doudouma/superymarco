@@ -618,6 +618,8 @@ background: linear-gradient(to top,#FF416C,#FF4B2B)
     float: left;
     width: 320px;
     position: relative;
+    text-align: center;
+    margin-top: 18px
 }
 
 .header .logo strong {
