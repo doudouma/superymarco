@@ -16,7 +16,7 @@
         <div class="cont">
           <div class="right-link">
             <a href="https://hao.uisdc.com" class="add_fav" target="_blank"><i class="icon-heart"></i>Ctrl+D收藏导航</a>
-            <a href="https://www.uisdc.com/about" target="_blank"><i class="icon-pen-01"></i>联系我们</a>
+            <!-- <a href="https://www.uisdc.com/about" target="_blank"><i class="icon-pen-01"></i>联系我们</a> -->
           </div>
           <div class="left-cont">
             <form class="search" id="superjy-search"  >
@@ -45,9 +45,9 @@
   </div> -->
   <div class="header-recommend">
   <div class="container">
-    <div class="focus ">
+    <!-- <div class="focus ">
       <span>大家正在关注：</span>
-      <a class="" href="https://www.uisdc.com/news" target="_blank" style="animation-delay: 0s;">今天设计圈有啥新鲜事</a> <a class="" href="https://www.uisdc.com/designer-self-study-2" target="_blank" style="animation-delay: 0.1s;">设计师完全自学指南</a> <a class="" href="https://pro.uisdc.com/index" target="_blank" style="animation-delay: 0.2s;">海量优质设计课程</a> <a class="" href="http://weibo.com/1773655610/DBAGHE7bU" target="_blank" style="animation-delay: 0.3s;">高质量免费图库</a> <a class="hide" href="https://www.uisdc.com/knockout-2-0" target="_blank" style="animation-delay: 0s;">PS抠图神器</a> <a class="hide" href="https://www.uisdc.com/tag/%E9%85%8D%E8%89%B2" target="_blank" style="animation-delay: 0.1s;">网页配色基础</a> <a class="hide" href="https://www.uisdc.com/category/hot-download/texture-and-background" target="_blank" style="animation-delay: 0.2s;">纹理打包下载</a> <a class="hide" href="http://weibo.com/1773655610/DAQndaZqy" target="_blank" style="animation-delay: 0.3s;">响应式设计原则</a>     </div>
+      <a class="" href="https://www.uisdc.com/news" target="_blank" style="animation-delay: 0s;">今天设计圈有啥新鲜事</a> <a class="" href="https://www.uisdc.com/designer-self-study-2" target="_blank" style="animation-delay: 0.1s;">设计师完全自学指南</a> <a class="" href="https://pro.uisdc.com/index" target="_blank" style="animation-delay: 0.2s;">海量优质设计课程</a> <a class="" href="http://weibo.com/1773655610/DBAGHE7bU" target="_blank" style="animation-delay: 0.3s;">高质量免费图库</a> <a class="hide" href="https://www.uisdc.com/knockout-2-0" target="_blank" style="animation-delay: 0s;">PS抠图神器</a> <a class="hide" href="https://www.uisdc.com/tag/%E9%85%8D%E8%89%B2" target="_blank" style="animation-delay: 0.1s;">网页配色基础</a> <a class="hide" href="https://www.uisdc.com/category/hot-download/texture-and-background" target="_blank" style="animation-delay: 0.2s;">纹理打包下载</a> <a class="hide" href="http://weibo.com/1773655610/DAQndaZqy" target="_blank" style="animation-delay: 0.3s;">响应式设计原则</a>     </div> -->
 
   </div>
 </div>
@@ -85,5 +85,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style >
-
+.icon-heart {
+  background: url(../assets/heart.svg) no-repeat;
+  background-size:100% 100%;
+  display: inline-block;
+  fill: #fff;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle
+}
 </style>
