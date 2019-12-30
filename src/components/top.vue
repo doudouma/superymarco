@@ -15,7 +15,7 @@
         </ul>
         <div class="cont">
           <div class="right-link">
-            <a href="https://hao.uisdc.com" class="add_fav" target="_blank"><i class="icon-heart"></i>Ctrl+D收藏导航</a>
+            <a href="https://hao.uisdc.com" class="add_fav" target="_blank"><svg t="1577518728191" class="icon-heart " viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2604" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20"><defs></defs><path d="M667.786667 117.333333C832.864 117.333333 938.666667 249.706667 938.666667 427.861333c0 138.250667-125.098667 290.506667-371.573334 461.589334a96.768 96.768 0 0 1-110.186666 0C210.432 718.368 85.333333 566.112 85.333333 427.861333 85.333333 249.706667 191.136 117.333333 356.213333 117.333333c59.616 0 100.053333 20.832 155.786667 68.096C567.744 138.176 608.170667 117.333333 667.786667 117.333333z m0 63.146667c-41.44 0-70.261333 15.189333-116.96 55.04-2.165333 1.845333-14.4 12.373333-17.941334 15.381333a32.32 32.32 0 0 1-41.770666 0c-3.541333-3.018667-15.776-13.536-17.941334-15.381333-46.698667-39.850667-75.52-55.04-116.96-55.04C230.186667 180.48 149.333333 281.258667 149.333333 426.698667 149.333333 537.6 262.858667 675.242667 493.632 834.826667a32.352 32.352 0 0 0 36.736 0C761.141333 675.253333 874.666667 537.6 874.666667 426.698667c0-145.44-80.853333-246.218667-206.88-246.218667z" p-id="2605" fill="#fff" ></path></svg>Ctrl+D收藏导航</a>
             <!-- <a href="https://www.uisdc.com/about" target="_blank"><i class="icon-pen-01"></i>联系我们</a> -->
           </div>
           <div class="left-cont">
@@ -73,21 +73,26 @@ export default {
         return false
       }
     }
+    // 监听搜索
+    this.$bus.$on('onsearch', (searchtxt) => {
+      this.$store.commit('filterLists', searchtxt)
+    })
   },
   methods: {
     search () {
       this.$bus.$emit('onsearch', this.searchtxt)
       this.$router.push('/search')
     }
+  },
+  beforeDestroy () {
+    this.$bus.$off('onsearch')
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style >
+<style>
 .icon-heart {
-  background: url(../assets/heart.svg) no-repeat;
-  background-size:100% 100%;
   display: inline-block;
   fill: #fff;
   width: 20px;

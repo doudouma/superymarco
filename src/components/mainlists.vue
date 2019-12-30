@@ -27,7 +27,7 @@
                   <div class="item">
                      <a :href="list.href" target="_blank">
                       <img
-                        :src="getImg(list.img)"
+                        v-lazy="getImg(list.img)"
                         :alt="list.title"
                       />
                       <h3>{{list.title}}</h3>

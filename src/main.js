@@ -3,9 +3,16 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueLazyload from 'vue-lazyload'
 import Bmob from 'hydrogen-js-sdk'
 import store from './store/'
 
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  // error: 'dist/error.png',
+  // loading: 'dist/loading.gif',
+  attempt: 1
+})
 Vue.config.productionTip = false
 Vue.prototype.$bus = new Vue()
 // 初始化 SDK版本 2.0.0 以下保留之前的初始化方法

@@ -892,7 +892,7 @@ background: linear-gradient(to top,#FF416C,#FF4B2B)
 }
 
 .primary-menus ul li:first-child {
-    cursor: auto;
+    cursor: pointer;
     color: #fff;
 }
 

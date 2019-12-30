@@ -14,8 +14,7 @@ export default {
     }
   },
   components: {
-    lists: lists,
-    top: top
+    lists: lists
   }
 }
 </script>
