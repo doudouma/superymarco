@@ -10,7 +10,7 @@ import store from './store/'
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   // error: 'dist/error.png',
-  // loading: 'dist/loading.gif',
+  loading: require('./assets/loading.png'),
   attempt: 1
 })
 Vue.config.productionTip = false
