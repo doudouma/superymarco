@@ -4,16 +4,30 @@
      <keep-alive>
          <router-view/>
      </keep-alive>
+     <additem/>
+     <superfooter v-if="delay"></superfooter>
   </div>
 </template>
 
 <script>
-import top from './components/top'
 
 export default {
   name: 'App',
+  data () {
+    return {
+      delay: false
+    }
+  },
+  created () {
+    let that = this
+    setTimeout(function () {
+      that.delay = true
+    }, 1000)
+  },
   components: {
-    top: top
+    top: () => import('./components/top'),
+    superfooter: () => import('./components/footer'),
+    additem: () => import('./components/additem')
   }
 }
 </script>
@@ -919,6 +933,7 @@ background: linear-gradient(to top,#FF416C,#FF4B2B)
     color: #fff;
     text-decoration: none;
     font-size: 13px;
+    cursor: pointer;
 }
 
 .primary-menus .right-link a:hover {

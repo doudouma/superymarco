@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import lists from '../components/mainlists'
 
 export default {
   name: 'index',
@@ -14,7 +13,7 @@ export default {
     }
   },
   components: {
-    lists: lists
+    lists: () => import('../components/mainlists')
   }
 }
 </script>

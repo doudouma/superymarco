@@ -5,7 +5,6 @@
 </template>
 
 <script>
-import lists from '../components/searchlists'
 
 export default {
   name: 'index',
@@ -14,7 +13,8 @@ export default {
     }
   },
   components: {
-    lists: lists
+    lists: () => import('../components/searchlists')
+
   }
 }
 </script>
