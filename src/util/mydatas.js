@@ -35,12 +35,16 @@ function dataDel (table, objectId, callback) {
   })
 }
 
-function isExist (table, openId) {
+async function isExist (table, openId) {
   const query = Bmob.Query(table)
   query.equalTo('openId', '==', openId)
-  query.find().then(res => {
-    console.log(res)
+  let promise = new Promise((resolve, reject) => {
+    query.find().then(res => {
+      resolve(res)
+    })
   })
+  let result = await promise
+  return result
 }
 
 export {dataEdit, dataAdd, dataDel, isExist}

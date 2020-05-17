@@ -16,13 +16,26 @@ const mutations = {
     })
   },
   registerUser (state, data) {
-    if (isExist('UserThird', data.openId)) {
-      dataAdd('UserThird', data, function () {
-        console.log('dataAdd')
-      })
+    isExist('UserThird', data.openId).then(function (s) {
+      if (!s) {
+        dataAdd('UserThird', data, function () {
+          console.log('dataAdd')
+        })
+      }
     }
+    )
+    // 回调方法
+    // isExist('UserThird', data.openId, function (user) {
+    //   console.log(!user)
+    // })
+    // if (await !isExist('UserThird', data.openId)) {
+    //   dataAdd('UserThird', data, function () {
+    //     console.log('dataAdd')
+    //   })
+    // }
   }
 }
+
 const store = new Vuex.Store({
   state,
   mutations
