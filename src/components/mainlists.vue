@@ -9,14 +9,14 @@
                 <span class="show-list"></span>
               </dt>
               <dd v-for="item in parts" :key='item.objectId'>
-                <a :href="getItemId(item.id)" class="auto-scroll" data-offset="-20" data-speed="500">{{item.part}}</a>
+                <a :href="getItemId(item.typeid)" class="auto-scroll" data-offset="-20" data-speed="500">{{item.part}}</a>
               </dd>
             </dl>
           </div>
         </div>
         <div class="col-md-11">
           <div v-for="item in parts" :key='item.objectId'>
-            <div class="part current" :id="item.id" :data-title="item.part">
+            <div class="part current" :id="item.typeid" :data-title="item.part">
             <h2>
               <strong>{{item.part}}</strong>
               <a v-if="item.more" :href="item.more" target="_blank">更多 &gt;</a>
@@ -24,7 +24,7 @@
             <div class="items">
               <div class="row">
                   <div class="col-xs-6 col-sm-4 col-md-3"  v-for="list in getLists(item.objectId)" :key="list.objectId">
-                  <div class="item">
+                  <div class="item" v-if="list.isverify">
                      <a :href="list.href" target="_blank">
                       <img
                         v-lazy="getImg(list.img)"
@@ -59,6 +59,7 @@ export default {
   },
   created () {
     const query = this.Bmob.Query('parts')
+    query.order('partOrder')
     query.find().then(res => {
       this.parts = res
       storage.set('parts', this.lists)

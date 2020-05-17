@@ -13,14 +13,16 @@
             </el-form-item>
             <el-form-item label="网站形象">
                 <el-upload
-                class="upload-img"
-                drag
-                action="https://jsonplaceholder.typicode.com/posts/"
-                multiple>
-                <i class="el-icon-upload"></i>
-                <div class="el-upload__text">将文件拖到此处，或<em>点击上传</em></div>
-                <div class="el-upload__tip" slot="tip">只能上传jpg/png文件，且不超过500kb</div>
+                class="logo-uploader"
+                action="http://192.168.31.41:8888/upload.php"
+                :show-file-list="false"
+                :on-success="handleAvatarSuccess"
+                :before-upload="beforeAvatarUpload"
+                >
+                <img v-if="imageUrl" :src="imageUrl" class="uploadlogo">
+                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
                 </el-upload>
+                <div class="el-upload__text">只能上传jpg/png/gif文件，100*100以内，且不超过1MB,建议60*60</div>
             </el-form-item>
             <el-form-item label="网站名称">
                 <el-input v-model="form.name"></el-input>
@@ -52,11 +54,28 @@ export default {
         resource: '',
         desc: ''
       },
-      dialogVisible: false
+      dialogVisible: false,
+      imageUrl: ''
     }
   },
   methods: {
+    handleAvatarSuccess (res, file) {
+      this.imageUrl = URL.createObjectURL(file.raw)
+    },
+    beforeAvatarUpload (file) {
+      const isJPG = file.type === 'image/jpeg'
+      const isGIF = file.type === 'image/gif'
+      const isPNG = file.type === 'image/png'
+      const isLtM = file.size / 1024 / 1024 < 1
 
+      if (!isJPG && !isGIF && !isPNG) {
+        this.$message.error('上传头像图片只能是JPG/GIF/PNG格式!')
+      }
+      if (!isLtM) {
+        this.$message.error('上传头像图片大小不能超过 1MB!')
+      }
+      return (isJPG || isGIF || isPNG) && isLtM
+    }
   }
 }
 </script>
@@ -77,6 +96,33 @@ export default {
 }
 .el-dialog {
     width: 36%;
+}
+
+.logo-uploader {
+    font-size: 28px;
+    color: #8c939d;
+    width: 60px;
+    height: 60px;
+    line-height:60px;
+    text-align: center;
+    .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+        width: 60px;
+        height: 60px;
+
+        .uploadlogo {
+            width: 100px;
+            vertical-align: middle;
+        }
+    }
+}
+.el-upload__text {
+    line-height: 24px;
+    margin-top: 5px;
 }
 @media (max-width: 991px){
     .el-dialog {

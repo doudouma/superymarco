@@ -112,28 +112,10 @@ export default {
     },
     loginIn () {
       this.dialogVisible = true
-      // QC.Login.showPopup({
-      //   appId: '101832863',
-      //   redirectURI: 'http://www.superjy.cn/mycb'
-      // })
-      // QC.api('get_user_info', {}).success(
-      //   function (s) {
-      //     that.qqimg = s.data.figureurl_qq_1
-      //     that.qqnick = s.data.nickname
-      //     storage.set('qqimg', that.qqimg)
-      //     storage.set('qqnick', that.qqnick)
-      //     if (QC.Login.check()) {
-      //       that.loginstatus = true
-      //       QC.Login.getMe(function (openId, accessToken) {
-      //         console.log(openId)
-      //         console.log(accessToken)
-      //       })
-      //     }
-      //   }
-      // )
     },
     qqLogin () {
-      var that = this
+      let userinfo = {}
+      let that = this
       this.dialogVisible = false
       QC.Login.showPopup({
         appId: '101832863',
@@ -145,11 +127,16 @@ export default {
           that.qqnick = s.data.nickname
           storage.set('qqimg', that.qqimg)
           storage.set('qqnick', that.qqnick)
+          userinfo = {
+            username: that.qqnick,
+            figureurl: that.qqimg,
+            gender: s.data.gender
+          }
           if (QC.Login.check()) {
             that.loginstatus = true
             QC.Login.getMe(function (openId, accessToken) {
-              console.log(openId)
-              console.log(accessToken)
+              userinfo.openId = openId
+              that.$store.commit('registerUser', userinfo)
             })
           }
         }
@@ -211,9 +198,18 @@ export default {
       text-align: center;
       .qqicon {
         cursor: pointer;
+          animation: loginAni 4s infinite ease-in-out;
       }
     }
   }
+  @keyframes loginAni {
+    0%{opacity: 1;}
+    25%{opacity: .4;}
+    50%{opacity: 1;}
+    75%{opacity: .4;}
+      100%{opacity: 1;}
+  }
+
   .el-dialog__footer{
     text-align: center;
   }
