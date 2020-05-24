@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const state = {
   lists: storage.get('lists') || [],
   searchLists: [],
-  user: {}
+  loginStatus: Boolean
 }
 const mutations = {
   filterLists (state, data) {
@@ -24,15 +24,9 @@ const mutations = {
       }
     }
     )
-    // 回调方法
-    // isExist('UserThird', data.openId, function (user) {
-    //   console.log(!user)
-    // })
-    // if (await !isExist('UserThird', data.openId)) {
-    //   dataAdd('UserThird', data, function () {
-    //     console.log('dataAdd')
-    //   })
-    // }
+  },
+  isLogin (state, data) {
+
   }
 }
 

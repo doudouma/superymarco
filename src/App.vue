@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import top from './components/top'
 
 export default {
   name: 'App',
@@ -25,7 +26,7 @@ export default {
     }, 1000)
   },
   components: {
-    top: () => import('./components/top'),
+    top: top,
     superfooter: () => import('./components/footer'),
     additem: () => import('./components/additem')
   }

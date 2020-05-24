@@ -29,7 +29,7 @@ function dataDel (table, objectId, callback) {
   const query = Bmob.Query(table)
   query.destroy(objectId).then(res => {
     console.log(res)
-    callback()
+    callback && callback()
   }).catch(err => {
     console.log(err)
   })
