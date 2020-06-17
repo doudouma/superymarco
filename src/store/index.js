@@ -7,7 +7,7 @@ Vue.use(Vuex)
 const state = {
   lists: storage.get('lists') || [],
   searchLists: [],
-  loginStatus: Boolean
+  comloginStatus: false
 }
 const mutations = {
   filterLists (state, data) {
@@ -16,17 +16,22 @@ const mutations = {
     })
   },
   registerUser (state, data) {
-    isExist('UserThird', data.openId).then(function (s) {
-      if (!s) {
-        dataAdd('UserThird', data, function () {
-          console.log('dataAdd')
+    isExist('UserThird', data.openId).then(function (res) {
+      storage.set('user_id', res[0].objectId)
+      if (!res) {
+        dataAdd('UserThird', data, function (res) {
+          storage.set('user_id', res[0].objectId)
         })
       }
     }
     )
   },
-  isLogin (state, data) {
-
+  isLogin (state) {
+    if (QC.Login.check()) {
+      state.comloginStatus = true
+    } else {
+      state.comloginStatus = false
+    }
   }
 }
 

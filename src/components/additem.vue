@@ -24,7 +24,7 @@
             <el-form-item label="网站形象">
                 <el-upload
                 class="logo-uploader"
-                action="http://localhost:8080/?s=App.Superjy_Superjy.Upload"
+                :action="uploadApi"
                 :show-file-list="false"
                 :on-success="handleAvatarSuccess"
                 :before-upload="beforeAvatarUpload"
@@ -35,7 +35,8 @@
                 <div class="el-upload__text">只能上传jpg/png文件，且不超过1MB,建议60*60</div>
             </el-form-item>
             <el-form-item label="推荐理由"  prop="des">
-                <el-input type="textarea" v-model="form.des"></el-input>
+                <el-input v-limitText="desMaxLength" type="textarea" v-model="form.des" rows="4"></el-input>
+                <span>还可以输入{{desMaxLength - form.des.length >= 0 ?desMaxLength - form.des.length : 0 }}/{{desMaxLength}}</span>
             </el-form-item>
             <el-form-item>
                 <el-button type="primary"  @click="submitForm('form')">立即创建</el-button>
@@ -44,14 +45,23 @@
         </el-form>
         </el-dialog>
 
-        <el-button type="primary" icon="el-icon-edit" circle class="additem" title="添加网站" @click="dialogVisible = true"></el-button>
+        <el-button type="primary" icon="el-icon-edit" circle class="additem" title="添加网站" @click="isLogin()"></el-button>
     </div>
 </template>
 
 <script>
+import storage from '../util/storage'
 import {dataAdd} from '../util/mydatas'
+import { mapState } from 'vuex'
+import Api from '../util/Api'
+
 export default {
   name: 'addItem',
+  computed: {
+    ...mapState([
+      'comloginStatus'
+    ])
+  },
   data () {
     return {
       form: {
@@ -78,14 +88,23 @@ export default {
       },
       dialogVisible: false,
       imageUrl: '',
-      tablePart: []
-
+      tablePart: [],
+      desMaxLength: 140,
+      uploadApi: Api
     }
   },
   created () {
     this.initPart()
   },
   methods: {
+    isLogin () {
+      this.$store.commit('isLogin')
+      if (!this.comloginStatus) {
+        this.$store.emit('eventlogin')
+      } else {
+        this.dialogVisible = true
+      }
+    },
     initPart () {
       const query = Bmob.Query('parts')
       query.order('partOrder')
@@ -105,9 +124,19 @@ export default {
             'des': this.form.des,
             'isverify': this.form.isverify
           }
-          dataAdd('lists', obj, function () {
+          dataAdd('lists', obj, function (res) {
             _this.$message('网站提交成功，还需要审核哦，请耐心等待')
             _this.dialogVisible = false
+            let userCompose = {
+              user_id: storage.get('user_id'),
+              compose_type: 'lists',
+              compose_id: res.objectId
+            }
+            // 提交到关系表userCompose
+            console.log(userCompose)
+            dataAdd('UserCompose', userCompose, function (res) {
+              console.log(res)
+            })
           })
         } else {
           this.$message('操作失败')
@@ -130,6 +159,20 @@ export default {
         this.$message.error('上传头像图片大小不能超过 1MB!')
       }
       return (isJPG || isPNG) && isLtM
+    }
+  },
+  directives: {
+    limitText: {
+      update (el, binding, vnode) {
+        let _this = vnode.context
+        el.childNodes[0].value = _this.form.des
+        // 初始化value值，不然会导致value出错
+        if (el.childNodes[0].value.length >= binding.value) {
+          el.childNodes[0].value = el.childNodes[0].value.slice(0, binding.value)
+          // vnode访问上下文,会影响form数据，暂时没有解决
+          _this.form.des = el.childNodes[0].value
+        }
+      }
     }
   }
 }

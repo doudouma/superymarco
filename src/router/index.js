@@ -17,13 +17,17 @@ export default new Router({
       path: '/',
       name: 'index',
       component: resolve => (require(['@/pages/index'], resolve))
-
     },
     {
       path: '/search',
       name: 'search',
       component: resolve => (require(['@/pages/search'], resolve))
 
+    },
+    {
+      path: '/mycb',
+      name: 'index',
+      component: resolve => (require(['@/pages/index'], resolve))
     }
   ]
 })

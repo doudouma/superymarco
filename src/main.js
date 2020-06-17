@@ -6,8 +6,10 @@ import router from './router'
 import VueLazyload from 'vue-lazyload'
 import Bmob from 'hydrogen-js-sdk'
 import store from './store/'
+import VuexEvent from './util/vuex-events'
 import { Button, Select, Dialog, Input,
   Option } from 'element-ui'
+VuexEvent(store)
 
 Vue.component(Button.name, Button)
 Vue.component(Select.name, Select)

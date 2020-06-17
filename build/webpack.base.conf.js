@@ -41,6 +41,7 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
+      // 'QC':'vue/static/js/qc_jssdk.js',
     }
   },
   module: {

@@ -19,7 +19,7 @@ function dataAdd (table, object, callback) {
   }
   query.save().then(res => {
     console.log(res)
-    callback()
+    callback(res)
   }).catch(err => {
     console.log(err)
   })
