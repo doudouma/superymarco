@@ -90,7 +90,7 @@ export default {
       imageUrl: '',
       tablePart: [],
       desMaxLength: 140,
-      uploadApi: Api
+      uploadApi: Api.upload
     }
   },
   created () {
@@ -213,7 +213,7 @@ export default {
         height: 60px;
 
         .uploadlogo {
-            width: 100px;
+            width: 60px;
             vertical-align: middle;
         }
     }

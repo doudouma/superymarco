@@ -64,7 +64,7 @@ export default {
       this.dialogVisible = false
       QC.Login.showPopup({
         appId: '101832863',
-        redirectURI: 'http://www.superjy.cn/mycb'
+        redirectURI: 'http://www.superjy.cn/#/mycb'
       })
       QC.api('get_user_info', {}).success(
         function (s) {
