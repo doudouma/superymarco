@@ -27,7 +27,8 @@ module.exports = {
   externals:{
     'vue': 'Vue',
     'vue-router': 'VueRouter',
-    'vuex':'Vuex'
+    'vuex':'Vuex',
+    'element-ui': 'ELEMENT',
   },
   output: {
     path: config.build.assetsRoot,
