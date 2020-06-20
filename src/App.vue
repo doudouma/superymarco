@@ -1008,11 +1008,6 @@ background: linear-gradient(to top,#FF416C,#FF4B2B)
         margin-left: 0;
         width: 100%;
     }
-
-    .primary-menus .right-link {
-        display: none;
-    }
-
     .primary-menus .left-cont {
         margin-right: 0;
     }
