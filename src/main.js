@@ -7,15 +7,11 @@ import VueLazyload from 'vue-lazyload'
 import Bmob from 'hydrogen-js-sdk'
 import store from './store/'
 import VuexEvent from './util/vuex-events'
-import { Button, Select, Dialog, Input,
-  Option } from 'element-ui'
+import ElementUI from 'element-ui'
+
 VuexEvent(store)
 
-Vue.component(Button.name, Button)
-Vue.component(Select.name, Select)
-Vue.component(Dialog.name, Dialog)
-Vue.component(Input.name, Input)
-Vue.component(Option.name, Option)
+Vue.use(ElementUI)
 Vue.use(VueLazyload, {
   preLoad: 1.3,
   // error: 'dist/error.png',

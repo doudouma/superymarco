@@ -131,6 +131,14 @@ export default {
 .add_fav {
     vertical-align: top;
 }
+
+@media (max-width: 991px) {
+  .signin .login-dialog {
+    .el-dialog {
+    width: 100%;
+    }
+  }
+}
 .login-dialog {
   .el-dialog {
   background: url(../assets/loginbg.jpg);
